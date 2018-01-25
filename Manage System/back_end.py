@@ -242,18 +242,18 @@ class Ui_MainWindow(object):
     def delete_room(self, MainWindow):
         index = self.tableView_3.selectionModel().selectedRows()
         model = self.tableView_3.model()
+        dbid = ''
+        dbip = ''
         try:
             idindexs = model.index(index[0].row(), 0)
             dbid = str(model.data(idindexs).toString())
+            ipindexs = model.index(index[0].row(), 2)
+            dbip = str(model.data(ipindexs).toString())
             self.db.open()
             query = QtSql.QSqlQuery(self.db)
             query.exec_('DELETE FROM room_info WHERE room_id = %d' % int(dbid))
             print(query.lastError().text())
 
-            index = self.tableView_3.selectionModel().selectedRows()
-            model = self.tableView_3.model()
-            ipindexs = model.index(index[0].row(), 2)
-            dbip = str(model.data(ipindexs).toString())
             query2 = QtSql.QSqlQuery(self.db)
             dbip = dbip.replace('.', '_')
             query2.exec_('DROP TABLE %s' % (dbip))

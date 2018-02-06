@@ -17,7 +17,9 @@ import serial
 import gc
 
 
-dbhostname = '140.125.46.94'
+strict = 0.6
+
+dbhostname = '140.125.183.64'
 dbname = 'face'
 dbusername = 'mipl'
 dbpassword = 'eb202'
@@ -162,7 +164,7 @@ def webcam():
                 open_door_master()
 
             if check:
-                isopen = check_match(small_frame, face_locations)
+                isopen = check_match(small_frame)
                 if not isopen and check_tick < check_tick_limit:
                     check_tick += 1
                     print('No Pass')
@@ -189,19 +191,22 @@ def webcam():
     cv2.destroyAllWindows()
 
 
-def check_match(small_frame, face_locations):
+def check_match(small_frame):
     global feature
     global recent_feature
-    face_encodings = fr.face_encodings(small_frame, face_locations)
-    for face_encoding in face_encodings:
-        match = fr.compare_faces([feature, recent_feature], face_encoding, 0.35)
-        if (match[0] or match[1]):
-            open_door(face_encoding)
-            global door_is_open
-            door_is_open = True
-            return True
-        else:
-            return False
+    try:
+        face_encodings = fr.face_encodings(small_frame)
+        for face_encoding in face_encodings:
+            match = fr.compare_faces([feature, recent_feature], face_encoding, strict)
+            if any(match):
+                open_door(face_encoding)
+                global door_is_open
+                door_is_open = True
+                return True
+            else:
+                return False
+    except:
+    	return False
 
 
 def get_ip():

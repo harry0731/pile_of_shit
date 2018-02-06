@@ -9,7 +9,7 @@
 from PyQt4 import QtCore, QtGui, QtSql
 
 
-dbhostname = '140.125.46.94'
+dbhostname = '140.125.183.64'
 dbname = 'face'
 dbusername = 'mipl'
 dbpassword = 'eb202'

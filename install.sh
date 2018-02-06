@@ -49,7 +49,7 @@ sudo pip install scipy
 sudo pip install numpy
 sudo pip install Pillow
 sudo pip install Click
-sudo pip install face_recognition_models
+sudo pip install face_recognition
 
 # RS232
 sudo apt-get install python-serial -y

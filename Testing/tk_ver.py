@@ -192,8 +192,8 @@ imageFrame.grid(row=0, column=0, padx=3, pady=2)
 lmain = tk.Label(imageFrame)
 lmain.grid(row=0, column=0)
 cap = cv2.VideoCapture(0)
-cap.set(3, 1024)
-cap.set(4, 600)
+cap.set(3, 1280)
+cap.set(4, 800)
 cap.set(5, 30)
 
 process_this_frame = True

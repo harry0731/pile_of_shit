@@ -26,4 +26,5 @@ print(d[0][2])
 
 
 for da in d:
-	print(da[6]+da[7]+da[4]+da[5]+da[2]+da[3]+da[0]+da[1])
+	b = da[6]+da[7]+da[4]+da[5]+da[2]+da[3]+da[0]+da[1]
+	print(b.lower())

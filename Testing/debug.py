@@ -97,20 +97,19 @@ def check_match(small_frame):
                 recent_feature = ''
                 return True
             else:
-            	print(10)
+                print(10)
                 return False
     except:
-    	print(11)
+        print(11)
         return False
 
 
 def open_door_master():
-	print(12)
+    print(12)
     db.open()
     logquery = QtSql.QSqlQuery(db)
     logquery.exec_('INSERT INTO log (user_name, room_name, timestamp) VALUES (("Master_Key"), (SELECT room_name FROM room_info WHERE room_ip = "%s"), (NOW()))' % (ip))
     print(logquery.lastError().text())
-
     db.close()
     print('Door Open by Master')
     global door_is_open
@@ -129,7 +128,7 @@ def close_door():
     ser.setRTS(True)
 
 def open_door(feature):
-	print(15)
+    print(15)
     db.open()
     logquery = QtSql.QSqlQuery(db)
     logquery.exec_('INSERT INTO log (user_name, room_name, timestamp) VALUES ((SELECT user_name FROM user_info WHERE user_rfid = "%s"), (SELECT room_name FROM room_info WHERE room_ip = "%s"), (NOW()))' % (rfid, ip))
@@ -231,17 +230,17 @@ def show_frame():
         global master_open
 
         if master_open:
-        	print(21)
+            print(21)
             open_door_master()
 
         if check:
             isopen = check_match(small_frame)
             if not isopen and check_tick < check_tick_limit:
-            	print(22)
+                print(22)
                 check_tick += 1
                 print('No Pass')
             else:
-            	print(23)
+                print(23)
                 check_tick = 0
                 check = False
 

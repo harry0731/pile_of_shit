@@ -42,6 +42,9 @@ sudo pip install MySQL-python
 sudo apt-get install python-qt4-sql -y
 sudo apt-get install libqt4-sql-mysql -y 
 
+# SQL
+sudo pip install PyMySQL
+
 # Face Recognition
 sudo apt-get install libboost-all-dev -y
 sudo pip install dlib
